@@ -26,7 +26,7 @@
     self.navigationItem.title = @"页面管理";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tableArray = [[NSArray<NSString *> alloc] initWithObjects:@"https://www.youtube.com", @"http://femdomvip.com/", @"http://www.xvideos.com/", nil];
+    self.tableArray = [[NSArray<NSString *> alloc] initWithObjects:@"https://www.youtube.com", nil];
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.tableView.dataSource = self;
