@@ -52,7 +52,12 @@
     AVURLAsset *asset = (AVURLAsset *)[playerItem asset];
     NSURL *url = [asset URL];
     NSString *path = [url absoluteString];
-    NSLog(@"Youtube / Media url ::::: %@", path);
+    
+    if([path rangeOfString:@"file:///"].location != NSNotFound) {
+        return;
+    }
+    
+    NSLog(@"Youtube / Media download url ::::: %@", path);
     
     [[VTURLSessionManager shareInstance] startDownloadTaskWithUrl:path];
 }
