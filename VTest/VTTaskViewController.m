@@ -86,15 +86,13 @@ static NSString * const countOfBytesReceived = @"countOfBytesReceived";
     CGFloat receivedFileSize = task.countOfBytesReceived * 1.0 / 1000000;
     
     long state = task.state;
+    BOOL isFinish = (receivedFileSize == fileSize);
+    
     NSString *stateText = @"下载中";
-    if(receivedFileSize == fileSize) {
-        if(state == NSURLSessionTaskStateRunning) {
-            stateText = @"准备下载";
-        } else if(state == NSURLSessionTaskStateCompleted) {
+    if(state == NSURLSessionTaskStateCompleted) {
+        if(isFinish) {
             stateText = @"已下载";
-        }
-    } else {
-        if(state == NSURLSessionTaskStateCompleted) {
+        } else {
             stateText = @"中断";
         }
     }
