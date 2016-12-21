@@ -23,10 +23,49 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    imageView.contentMode = UIViewContentModeRedraw;
+    imageView.image = [UIImage imageNamed:[self splashImageNameForOrientation]];
+    [self.view addSubview:imageView];
+    
+    UILabel *appLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height / 2, self.view.bounds.size.width, 60)];
+    appLabel.textAlignment = NSTextAlignmentCenter;
+    appLabel.font = [UIFont systemFontOfSize:30];
+    appLabel.text = @"VideoDown";
+    appLabel.alpha = 0;
+    [self.view addSubview:appLabel];
+    
+    CGRect imageFrame = imageView.frame;
+    imageFrame.origin.y += self.view.bounds.size.height / 12;
+    CGRect labelFrame = appLabel.frame;
+    labelFrame.origin.y -= self.view.bounds.size.height / 3;
+    
+    [UIView animateWithDuration:2 animations:^{
+        imageView.frame = imageFrame;
+        appLabel.frame = labelFrame;
+        appLabel.alpha = 1;
+    }];
+    
+    
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction)];
     longPressGesture.numberOfTouchesRequired = 2;
     longPressGesture.minimumPressDuration = 3;
     [self.view addGestureRecognizer:longPressGesture];
+}
+
+- (NSString *)splashImageNameForOrientation {
+    CGSize viewSize = self.view.bounds.size;
+    NSString *viewOrientation = @"Portrait";
+    
+    NSArray *imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
+    for (NSDictionary *dict in imagesDict) {
+        CGSize imageSize = CGSizeFromString(dict[@"UILaunchImageSize"]);
+        if (CGSizeEqualToSize(imageSize, viewSize) && [viewOrientation isEqualToString:dict[@"UILaunchImageOrientation"]]) {
+            return dict[@"UILaunchImageName"];
+        }
+    }
+    return nil;
 }
 
 - (void)longPressAction
