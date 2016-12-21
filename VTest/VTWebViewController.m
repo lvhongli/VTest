@@ -9,10 +9,14 @@
 #import "VTWebViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "VTURLSessionManager.h"
+#import <DGActivityIndicatorView/DGActivityIndicatorView.h>
+#import "VTUtil.h"
 
-@interface VTWebViewController ()
+
+@interface VTWebViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) DGActivityIndicatorView *indicatorView;
 
 @end
 
@@ -26,6 +30,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    self.webView.delegate = self;
     [self.view addSubview:self.webView];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.webUrl]]];
     [self backButtonLoad];
@@ -36,9 +41,14 @@
                                                object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)itemBecameCurrent:(NSNotification *)notification
 {
-    NSLog(@"Youtube / Media window appears");
+    NSLog(@"Video / Media window appears");
     AVPlayerItem *playerItem = [notification object];
     if(playerItem == nil) {
         return;
@@ -57,7 +67,7 @@
         return;
     }
     
-    NSLog(@"Youtube / Media download url ::::: %@", path);
+    NSLog(@"Video / Media download url ::::: %@", path);
     
     [[VTURLSessionManager shareInstance] startDownloadTaskWithUrl:path];
 }
@@ -82,9 +92,24 @@
     }
 }
 
-- (void)dealloc
+- (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if(self.indicatorView == nil) {
+        CGFloat iHeight = 40;
+        CGFloat wWidth = webView.bounds.size.width;
+        CGFloat wHeight = webView.bounds.size.height;
+        
+        self.indicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeLineScale tintColor:[UIColor redColor]];
+        self.indicatorView.frame = CGRectMake((wWidth - iHeight) / 2, (wHeight - iHeight) / 2, iHeight, iHeight);
+        [self.webView addSubview:self.indicatorView];
+    }
+    
+    [self.indicatorView startAnimating];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+{
+    [self.indicatorView stopAnimating];
 }
 
 @end

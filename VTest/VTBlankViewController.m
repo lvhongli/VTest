@@ -24,8 +24,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction)];
-    longPressGesture.numberOfTouchesRequired = 2;
-    longPressGesture.minimumPressDuration = 3;
+    longPressGesture.numberOfTouchesRequired = 1;
+    longPressGesture.minimumPressDuration = 0;
     [self.view addGestureRecognizer:longPressGesture];
 }
 
@@ -53,12 +53,18 @@
     
     UITabBarItem *mainItem = [tabBar.items objectAtIndex:0];
     mainItem.title = @"页面管理";
+    mainItem.selectedImage = [UIImage imageNamed:@"MainIcon"];
+    mainItem.image = [UIImage imageNamed:@"MainIcon"];
     
     UITabBarItem *fileItem = [tabBar.items objectAtIndex:1];
     fileItem.title = @"文件管理";
+    fileItem.selectedImage = [UIImage imageNamed:@"FileIcon"];
+    fileItem.image = [UIImage imageNamed:@"FileIcon"];
     
     UITabBarItem *taskItem = [tabBar.items objectAtIndex:2];
     taskItem.title = @"下载管理";
+    taskItem.selectedImage = [UIImage imageNamed:@"TaskIcon"];
+    taskItem.image = [UIImage imageNamed:@"TaskIcon"];
 }
 
 

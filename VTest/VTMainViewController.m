@@ -8,6 +8,9 @@
 
 #import "VTMainViewController.h"
 #import "VTWebViewController.h"
+#import "VTUtil.h"
+#import <FCAlertView/FCAlertView.h>
+#import <MJRefresh/MJRefresh.h>
 
 @interface VTMainViewController ()
 
@@ -26,13 +29,46 @@
     self.navigationItem.title = @"页面管理";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tableArray = [[NSArray<NSString *> alloc] initWithObjects:@"https://www.youtube.com", nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addUrlAction)];
     
+    self.tableArray = [self getTableViewList];
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self.tableView reloadData];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self reloadTableData];
+    }];
+}
+
+- (NSArray *)getTableViewList {
+    NSArray *userArray = [VTUtil getUrlArray];
+    if(userArray.count == 0) {
+        [VTUtil saveUrl:@"https://www.youtube.com"];
+        userArray = [VTUtil getUrlArray];
+    }
+    return userArray;
+}
+
+- (void)reloadTableData
+{
+    self.tableArray = [self getTableViewList];
+    [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
+}
+
+- (void)addUrlAction
+{
+    FCAlertView *alertView = [[FCAlertView alloc] init];
+    [alertView addTextFieldWithPlaceholder:@"视频网站全链接" andTextReturnBlock:^(NSString *text) {
+        if(text.length > 0) {
+            [VTUtil saveUrl:text];
+            [self reloadTableData];
+        }
+    }];
+    [alertView showAlertInView:self withTitle:@"添加视频网站地址" withSubtitle:nil withCustomImage:[UIImage imageNamed:@"UrlIcon"] withDoneButtonTitle:@"确定" andButtons:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -66,6 +102,20 @@
     webVC.title = pageUrl;
     webVC.webUrl = pageUrl;
     [self.navigationController pushViewController:webVC animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *url = [self.tableArray objectAtIndex:indexPath.row];
+        [VTUtil deleteUrl:url];
+        [self reloadTableData];
+    }
 }
 
 @end

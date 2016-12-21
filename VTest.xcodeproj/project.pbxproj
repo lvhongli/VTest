@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D78836C222F716285EC9607 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DF1A5954C18382B1B815B4F /* libPods.a */; };
 		D2341F641CBD2DE000E27DA3 /* VTBlankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2341F631CBD2DE000E27DA3 /* VTBlankViewController.m */; };
 		D274630C1CB50D190079299C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D274630B1CB50D190079299C /* main.m */; };
 		D274630F1CB50D190079299C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D274630E1CB50D190079299C /* AppDelegate.m */; };
@@ -16,12 +17,12 @@
 		D27463331CBC93360079299C /* VTURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D27463321CBC93360079299C /* VTURLSessionManager.m */; };
 		D27463361CBCA4210079299C /* VTFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27463351CBCA4210079299C /* VTFileViewController.m */; };
 		D27463391CBCA4820079299C /* VTTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D27463381CBCA4820079299C /* VTTaskViewController.m */; };
-		FD7991E1A6A0A87A817F4F31 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2931A97FD068DD224C644676 /* libPods.a */; };
+		D2BBB1CC1E0A5BAA00D062CA /* VTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BBB1CB1E0A5BA900D062CA /* VTUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0FA5755F0A8C4D4F1B961585 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		2931A97FD068DD224C644676 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DF1A5954C18382B1B815B4F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2341F621CBD2DE000E27DA3 /* VTBlankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTBlankViewController.h; sourceTree = "<group>"; };
 		D2341F631CBD2DE000E27DA3 /* VTBlankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTBlankViewController.m; sourceTree = "<group>"; };
 		D27463071CB50D190079299C /* VTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,6 +42,8 @@
 		D27463351CBCA4210079299C /* VTFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTFileViewController.m; sourceTree = "<group>"; };
 		D27463371CBCA4820079299C /* VTTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTTaskViewController.h; sourceTree = "<group>"; };
 		D27463381CBCA4820079299C /* VTTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTTaskViewController.m; sourceTree = "<group>"; };
+		D2BBB1CA1E0A5BA900D062CA /* VTUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTUtil.h; sourceTree = "<group>"; };
+		D2BBB1CB1E0A5BA900D062CA /* VTUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTUtil.m; sourceTree = "<group>"; };
 		E69F1983FE32599161C5C0F3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD7991E1A6A0A87A817F4F31 /* libPods.a in Frameworks */,
+				1D78836C222F716285EC9607 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +71,7 @@
 		C5922B412B9B9EA7E0B16740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2931A97FD068DD224C644676 /* libPods.a */,
+				3DF1A5954C18382B1B815B4F /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -94,6 +97,8 @@
 		D27463091CB50D190079299C /* VTest */ = {
 			isa = PBXGroup;
 			children = (
+				D2BBB1CA1E0A5BA900D062CA /* VTUtil.h */,
+				D2BBB1CB1E0A5BA900D062CA /* VTUtil.m */,
 				D2341F621CBD2DE000E27DA3 /* VTBlankViewController.h */,
 				D2341F631CBD2DE000E27DA3 /* VTBlankViewController.m */,
 				D27463371CBCA4820079299C /* VTTaskViewController.h */,
@@ -136,6 +141,7 @@
 				D27463041CB50D190079299C /* Frameworks */,
 				D27463051CB50D190079299C /* Resources */,
 				DA8A75B4BBCB2B7B07FAB9A9 /* Copy Pods Resources */,
+				5D1BA3A6FCD25F1561300AA3 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,6 +164,7 @@
 					D27463061CB50D190079299C = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = NM63M54QAV;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -206,6 +213,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		5D1BA3A6FCD25F1561300AA3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DA8A75B4BBCB2B7B07FAB9A9 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,6 +252,7 @@
 			files = (
 				D274630F1CB50D190079299C /* AppDelegate.m in Sources */,
 				D27463331CBC93360079299C /* VTURLSessionManager.m in Sources */,
+				D2BBB1CC1E0A5BAA00D062CA /* VTUtil.m in Sources */,
 				D274630C1CB50D190079299C /* main.m in Sources */,
 				D2341F641CBD2DE000E27DA3 /* VTBlankViewController.m in Sources */,
 				D27463271CB50F650079299C /* VTMainViewController.m in Sources */,
@@ -335,6 +358,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honlee.VTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -352,6 +376,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.honlee.VTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
