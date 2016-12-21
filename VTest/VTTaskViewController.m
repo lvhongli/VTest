@@ -9,6 +9,7 @@
 #import "VTTaskViewController.h"
 #import "VTURLSessionManager.h"
 #import <MJRefresh/MJRefresh.h>
+#import "VTUtil.h"
 
 @interface VTTaskViewController ()
 
@@ -108,11 +109,17 @@ static NSString * const countOfBytesReceived = @"countOfBytesReceived";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSURLSessionDownloadTask *task = [self.tableArray objectAtIndex:indexPath.row];
-    if(task.state == NSURLSessionTaskStateCompleted && task.countOfBytesReceived < task.countOfBytesExpectedToReceive) {
+    if(task.state == NSURLSessionTaskStateCompleted && task.countOfBytesReceived < task.countOfBytesExpectedToReceive) { //中断的任务，恢复运行
         NSData *resumeData = [task.error.userInfo valueForKey:NSURLSessionDownloadTaskResumeData];
         NSInteger taskIdentifier = task.taskIdentifier;
         [[VTURLSessionManager shareInstance] startDownloadTaskWithData:resumeData taskIdentifier:taskIdentifier];
         [self taskDataLoad];
+    }
+    if(task.state == NSURLSessionTaskStateRunning) { //正在运行的任务，进行中断
+        [task cancelByProducingResumeData:^(NSData * _Nullable resumeData) {}];
+        [VTUtil delayPerformBlock:^{
+            [self taskDataLoad];
+        } afterDelay:0.5];
     }
 }
 

@@ -24,8 +24,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction)];
-    longPressGesture.numberOfTouchesRequired = 1;
-    longPressGesture.minimumPressDuration = 0;
+    longPressGesture.numberOfTouchesRequired = 2;
+    longPressGesture.minimumPressDuration = 3;
     [self.view addGestureRecognizer:longPressGesture];
 }
 

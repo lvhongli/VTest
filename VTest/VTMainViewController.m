@@ -65,7 +65,7 @@
     [alertView addTextFieldWithPlaceholder:@"视频网站全链接" andTextReturnBlock:^(NSString *text) {
         if(text.length > 0) {
             [VTUtil saveUrl:text];
-            [self reloadTableData];
+            [self.tableView.mj_header beginRefreshing];
         }
     }];
     [alertView showAlertInView:self withTitle:@"添加视频网站地址" withSubtitle:nil withCustomImage:[UIImage imageNamed:@"UrlIcon"] withDoneButtonTitle:@"确定" andButtons:nil];
@@ -114,7 +114,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString *url = [self.tableArray objectAtIndex:indexPath.row];
         [VTUtil deleteUrl:url];
-        [self reloadTableData];
+        [self.tableView.mj_header beginRefreshing];
     }
 }
 
