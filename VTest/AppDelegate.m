@@ -23,6 +23,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window makeKeyAndVisible];
     
+    [NSThread sleepForTimeInterval:1];
+    
     VTBlankViewController *blankVC = [[VTBlankViewController alloc] init];
     self.window.rootViewController = blankVC;
     
