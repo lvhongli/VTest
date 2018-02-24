@@ -11,6 +11,7 @@
 #import "VTURLSessionManager.h"
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 #import "VTUtil.h"
+#import <FCAlertView/FCAlertView.h>
 
 
 @interface VTWebViewController () <UIWebViewDelegate>
@@ -69,7 +70,12 @@
     
     NSLog(@"Video / Media download url ::::: %@", path);
     
-    [[VTURLSessionManager shareInstance] startDownloadTaskWithUrl:path];
+    FCAlertView *alertView = [[FCAlertView alloc] init];
+    [alertView showAlertInWindow:self.view.window withTitle:@"视频下载" withSubtitle:@"是否要下载此视频?"
+                 withCustomImage:nil withDoneButtonTitle:@"取消" andButtons:nil];
+    [alertView addButton:@"确定" withActionBlock:^{
+        [[VTURLSessionManager shareInstance] startDownloadTaskWithUrl:path];
+    }];
 }
 
 - (void)backButtonLoad
